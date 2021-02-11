@@ -26,13 +26,6 @@
                 </div>
               </v-card-text>
             </v-card>
-            <!-- <div class="">{{ compostable.item.item }}</div>
-              <div class="">{{ compostable.item.notes }}</div>
-              <div class="">{{ compostable.item.compostable }}</div>
-              <div class="">{{ compostable.item.type }}</div>
-              <div v-if="options.includeScore" class="">
-                {{ compostable.score }}
-              </div> -->
           </v-container>
         </div>
       </div>
@@ -70,7 +63,6 @@ export default {
   },
   methods: {
     handleResults(r) {
-      console.log("handling results, length=" + r.length);
       this.compostables = r;
     },
   },
@@ -79,7 +71,6 @@ export default {
     const compostableData = await getCompostables();
     const includeScore = true;
     const compostables = [];
-    console.log("compostable length " + compostableData.length);
 
     return { compostableData, includeScore, compostables };
   },
