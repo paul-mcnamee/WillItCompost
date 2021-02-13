@@ -1,5 +1,10 @@
 <template>
   <v-container justify="center" align="center">
+    <v-row justify="center" align="center" class="mb-4">
+      <h1>
+        Will It Compost?
+      </h1>
+    </v-row>
     <v-row justify="center" align="center" class="pa-2 mb-6">
       <VueFuse
         :fuseOpts="options"
@@ -56,7 +61,7 @@
       </v-col>
     </v-row>
     <v-row v-else justify="center" align="center"
-      >Nothing found, try a different term to search for.</v-row
+      >Nothing found, try searching for something else.</v-row
     >
   </v-container>
 </template>
@@ -65,7 +70,7 @@
 .searchbox {
   color: white;
   box-sizing: border-box;
-  border: 2px solid white;
+  border: 2px solid gray;
   border-radius: 4px;
   padding: 5px;
   width: 60%;
