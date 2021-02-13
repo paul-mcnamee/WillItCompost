@@ -11,8 +11,12 @@
         class="searchbox"
       />
     </v-row>
-    <v-row v-if="compostables.length > 0" cols="12" sm="6" md="4">
-      <v-col v-for="(compostable, i) in compostables" :key="i" class="col-md-6">
+    <v-row v-if="compostables.length > 0">
+      <v-col
+        v-for="(compostable, i) in compostables"
+        :key="i"
+        class="col-12 col-lg-6 col-xl-6"
+      >
         <v-card
           tile
           elevation="2"
@@ -36,12 +40,9 @@
               <v-spacer></v-spacer>
             </v-row>
 
-
             <v-row v-if="compostable.item.notes.length > 0">
               <v-divider class="mx-4 mb-2"></v-divider>
-              <v-card-text>
-                Notes: {{ compostable.item.notes }}
-              </v-card-text>
+              <v-card-text> Notes: {{ compostable.item.notes }} </v-card-text>
             </v-row>
 
             <div v-if="options.includeScore">
