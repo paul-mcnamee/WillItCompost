@@ -1,37 +1,75 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <VueFuse
-          :fuseOpts="options"
-          :list="compostableData"
-          :mapResults="false"
-          :defaultAll="false"
-          :placeholder="`Search Compost Pile`"
-          @fuse-results="handleResults"
-        />
-        <div v-if="compostables.length > 0">
-          <v-container fluid v-for="(compostable, i) in compostables" :key="i">
-            <v-card tile elevation="2" class="pa-2">
-              <v-card-title v-text="compostable.item.item"></v-card-title>
-              <v-card-text>
+  <v-container justify="center" align="center">
+    <v-row justify="center" align="center" class="pa-2 mb-6">
+      <VueFuse
+        :fuseOpts="options"
+        :list="compostableData"
+        :mapResults="false"
+        :defaultAll="false"
+        :placeholder="`Search Compost Pile`"
+        @fuse-results="handleResults"
+        class="searchbox"
+      />
+    </v-row>
+    <v-row v-if="compostables.length > 0" cols="12" sm="6" md="4">
+      <v-col v-for="(compostable, i) in compostables" :key="i" class="col-md-6">
+        <v-card
+          tile
+          elevation="2"
+          outlined
+          justify-center
+          class="pa-2 rounded-lg"
+        >
+          <v-card-title v-text="compostable.item.item"></v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col>
+                <v-icon
+                  large
+                  v-if="compostable.item.compostable == 1"
+                  color="green"
+                  >mdi-check</v-icon
+                >
+                <v-icon large v-else color="red">mdi-close</v-icon>
                 {{ compostable.item.compostable == 1 ? `` : `Not ` }}Compostable
-                <v-card-text v-if="compostable.item.notes.length > 0">
-                  <v-divider class="mx-4"></v-divider>
-                  Notes: {{ compostable.item.notes }}
-                </v-card-text>
-                <div v-if="options.includeScore" class="">
-                  <v-divider class="mx-4"></v-divider>
-                  {{ compostable.score }}
-                </div>
+              </v-col>
+              <v-spacer></v-spacer>
+            </v-row>
+
+
+            <v-row v-if="compostable.item.notes.length > 0">
+              <v-divider class="mx-4 mb-2"></v-divider>
+              <v-card-text>
+                Notes: {{ compostable.item.notes }}
               </v-card-text>
-            </v-card>
-          </v-container>
-        </div>
-      </div>
-    </v-col>
-  </v-row>
+            </v-row>
+
+            <div v-if="options.includeScore">
+              <v-divider class="ma-4"></v-divider>
+              <v-card-text>
+                {{ compostable.score }}
+              </v-card-text>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-else justify="center" align="center"
+      >Nothing found, try a different term to search for.</v-row
+    >
+  </v-container>
 </template>
+
+<style scoped>
+.searchbox {
+  color: white;
+  box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 4px;
+  padding: 5px;
+  width: 60%;
+}
+</style>
 
 <script>
 import VueFuse from "vue-fuse";
