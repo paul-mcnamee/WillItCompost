@@ -14,7 +14,7 @@
     "@nuxt/typescript-runtime": "^2.0.1",
     "@nuxtjs/robots": "^2.4.2",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.8",
     "vue-fuse": "^3.0.0"
   },
   "devDependencies": {
